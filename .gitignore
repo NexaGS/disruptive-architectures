@@ -1,0 +1,7 @@
+# Credenciais e endpoints locais - nunca versionar
+firmware/secrets.h
+
+# Ruído de SO e editores
+.DS_Store
+Thumbs.db
+*.swp

@@ -21,9 +21,12 @@ Simulado no Wokwi com **ESP32-S3-DevKitC-1**: **[wokwi.com/projects/480148232017
 
 O mesmo circuito e firmware estão espelhados neste repositório, para quem não quiser depender do link externo:
 
-- [`firmware/nexa.ino`](firmware/nexa.ino) — código-fonte
-- [`firmware/libraries.txt`](firmware/libraries.txt) — dependências (Adafruit GFX Library, Adafruit SSD1306)
+- [`nexa/nexa.ino`](nexa/nexa.ino) — código-fonte
+- [`nexa/libraries.txt`](nexa/libraries.txt) — dependências (Adafruit GFX Library, Adafruit SSD1306, ArduinoJson)
+- [`nexa/secrets.h.example`](nexa/secrets.h.example) — modelo de configuração (Wi-Fi e endpoint do servidor); copie para `secrets.h` e preencha antes de compilar — esse arquivo real não é versionado
 - [`circuito/diagram.json`](circuito/diagram.json) — circuito, importável direto num novo projeto Wokwi
+
+> A pasta se chama `nexa/` (e não `firmware/`) porque o Arduino IDE exige que a pasta do sketch tenha o mesmo nome do arquivo `.ino` principal — é só essa regra, não afeta como o projeto é editado no VS Code ou simulado no Wokwi.
 
 ## Componentes
 
@@ -75,7 +78,7 @@ O totem se conecta direto por Wi-Fi (o ESP32-S3 tem rádio próprio), sem precis
 
 ## Estado atual do firmware
 
-O [`firmware/nexa.ino`](firmware/nexa.ino) já implementa a parte definitiva da lógica do totem: lê os 3 botões, gera a senha local, mostra no display, bipa e volta ao estado de espera. Essa parte **não é um placeholder** — é como o totem deve se comportar mesmo depois de integrado ao Java, porque a senha é sempre local.
+O [`nexa/nexa.ino`](nexa/nexa.ino) já implementa a parte definitiva da lógica do totem: lê os 3 botões, gera a senha local, mostra no display, bipa e volta ao estado de espera. Essa parte **não é um placeholder** — é como o totem deve se comportar mesmo depois de integrado ao Java, porque a senha é sempre local.
 
 O que falta adicionar é só o aviso de rede pro Java, em paralelo, sem bloquear a exibição da senha:
 
@@ -115,7 +118,7 @@ O que falta adicionar é só o aviso de rede pro Java, em paralelo, sem bloquear
 | Critério de entrega | Pontos | Onde revisar |
 |---|---:|---|
 | Identificação do problema e proposta CitizenTech | 10 | Seção "O problema e a proposta" |
-| Desenvolvimento do protótipo | 25 | Seção "Protótipo" e [`firmware/nexa.ino`](firmware/nexa.ino) |
+| Desenvolvimento do protótipo | 25 | Seção "Protótipo" e [`nexa/nexa.ino`](nexa/nexa.ino) |
 | Identificação dos componentes e do fluxo de comunicação em rede | 20 | Seções "Componentes", "Mapa de pinos" e "Arquitetura e fluxo de comunicação em rede" |
 | Diagrama da arquitetura | 15 | Diagrama de sequência acima |
 | Testes, evidências e demonstração do protótipo | 20 | Seção "Evidências" |
