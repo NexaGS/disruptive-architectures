@@ -3,64 +3,46 @@
   "author": "Renan Paulino",
   "editor": "wokwi",
   "parts": [
-    { "type": "wokwi-breadboard", "id": "bb1", "top": 189, "left": -6.8, "attrs": {} },
     {
       "type": "board-esp32-s3-devkitc-1",
       "id": "esp",
-      "top": -163.38,
-      "left": 244.57,
+      "top": 0,
+      "left": 0,
       "attrs": {}
     },
     {
-      "type": "wokwi-pushbutton",
-      "id": "btn1",
-      "top": 278.3,
-      "left": -6.1,
-      "rotate": 90,
-      "attrs": { "color": "blue", "xray": "1" }
+      "type": "wokwi-membrane-keypad",
+      "id": "keypad1",
+      "top": -160,
+      "left": 260,
+      "attrs": {}
     },
     {
-      "type": "wokwi-pushbutton",
-      "id": "btn2",
-      "top": 278.3,
-      "left": 51.5,
-      "rotate": 90,
-      "attrs": { "color": "yellow", "xray": "1" }
-    },
-    {
-      "type": "wokwi-pushbutton",
-      "id": "btn3",
-      "top": 278.3,
-      "left": 109.1,
-      "rotate": 90,
-      "attrs": { "color": "red", "xray": "1" }
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": -160,
+      "left": -220,
+      "attrs": { "i2cAddress": "0x3c" }
     },
     {
       "type": "wokwi-buzzer",
       "id": "bz1",
-      "top": 184.8,
-      "left": 184.2,
+      "top": 140,
+      "left": -140,
       "attrs": { "volume": "0.1" }
     },
     {
       "type": "wokwi-led",
       "id": "led1",
-      "top": 217.2,
-      "left": 560.6,
+      "top": 170,
+      "left": 60,
       "attrs": { "color": "limegreen" }
-    },
-    {
-      "type": "board-ssd1306",
-      "id": "oled1",
-      "top": 22.34,
-      "left": 509.03,
-      "attrs": { "i2cAddress": "0x3c" }
     },
     {
       "type": "wokwi-resistor",
       "id": "r1",
-      "top": 150,
-      "left": 585,
+      "top": 170,
+      "left": 10,
       "rotate": 90,
       "attrs": { "value": "220" }
     }
@@ -68,38 +50,27 @@
   "connections": [
     [ "esp:TX", "$serialMonitor:RX", "", [] ],
     [ "esp:RX", "$serialMonitor:TX", "", [] ],
-    [ "esp:4", "bb1:1t.a", "blue", [ "h0" ] ],
-    [ "esp:5", "bb1:7t.a", "gold", [ "h0" ] ],
-    [ "esp:6", "bb1:13t.a", "red", [ "h0" ] ],
-    [ "bb1:3t.a", "bb1:tn.2", "black", [ "h9.6", "v-28.7" ] ],
-    [ "bb1:9t.a", "bb1:tn.6", "black", [ "v0" ] ],
-    [ "bb1:15t.a", "bb1:tn.11", "black", [ "v0" ] ],
-    [ "bb1:21t.e", "bb1:tn.13", "black", [ "h-48", "v-67.1" ] ],
-    [ "bb1:22t.e", "esp:7", "green", [ "h-48", "v-288" ] ],
-    [ "esp:15", "r1:1", "green", [ "h-19.25", "v38.4", "h460.8", "v154.8" ] ],
-    [ "r1:2", "bb1:60t.e", "green", [] ],
-    [ "bb1:59t.a", "bb1:tn.48", "black", [ "h-19.2", "v-28.7" ] ],
-    [ "esp:8", "oled1:SDA", "green", [ "h-28.85", "v144", "h432", "v-163.2", "h-67.27" ] ],
-    [ "oled1:SCL", "esp:9", "green", [ "v-28.8", "h-95.7", "v153.6", "h-249.6", "v-105.6" ] ],
-    [ "oled1:GND", "esp:GND.4", "black", [ "v-9.6", "h-67.2", "v96" ] ],
-    [ "oled1:VCC", "esp:5V", "red", [ "v-19.2", "h-67.05", "v163.2", "h-239.95" ] ],
-    [ "esp:GND.1", "bb1:tn.1", "black", [ "h0" ] ],
-    [ "btn1:1.l", "bb1:3t.d", "", [ "$bb" ] ],
-    [ "btn1:2.l", "bb1:1t.d", "", [ "$bb" ] ],
-    [ "btn1:1.r", "bb1:3b.i", "", [ "$bb" ] ],
-    [ "btn1:2.r", "bb1:1b.i", "", [ "$bb" ] ],
-    [ "btn2:1.l", "bb1:9t.d", "", [ "$bb" ] ],
-    [ "btn2:2.l", "bb1:7t.d", "", [ "$bb" ] ],
-    [ "btn2:1.r", "bb1:9b.i", "", [ "$bb" ] ],
-    [ "btn2:2.r", "bb1:7b.i", "", [ "$bb" ] ],
-    [ "btn3:1.l", "bb1:15t.d", "", [ "$bb" ] ],
-    [ "btn3:2.l", "bb1:13t.d", "", [ "$bb" ] ],
-    [ "btn3:1.r", "bb1:15b.i", "", [ "$bb" ] ],
-    [ "btn3:2.r", "bb1:13b.i", "", [ "$bb" ] ],
-    [ "bz1:1", "bb1:21t.d", "", [ "$bb" ] ],
-    [ "bz1:2", "bb1:22t.d", "", [ "$bb" ] ],
-    [ "led1:A", "bb1:60t.c", "", [ "$bb" ] ],
-    [ "led1:C", "bb1:59t.c", "", [ "$bb" ] ]
+
+    [ "esp:8", "oled1:SDA", "green", [] ],
+    [ "esp:9", "oled1:SCL", "yellow", [] ],
+    [ "oled1:VCC", "esp:5V", "red", [] ],
+    [ "oled1:GND", "esp:GND.1", "black", [] ],
+
+    [ "esp:7", "bz1:2", "green", [] ],
+    [ "bz1:1", "esp:GND.2", "black", [] ],
+
+    [ "esp:15", "r1:1", "green", [] ],
+    [ "r1:2", "led1:A", "green", [] ],
+    [ "led1:C", "esp:GND.3", "black", [] ],
+
+    [ "keypad1:R1", "esp:4", "blue", [] ],
+    [ "keypad1:R2", "esp:5", "blue", [] ],
+    [ "keypad1:R3", "esp:6", "blue", [] ],
+    [ "keypad1:R4", "esp:16", "blue", [] ],
+    [ "keypad1:C1", "esp:17", "orange", [] ],
+    [ "keypad1:C2", "esp:18", "orange", [] ],
+    [ "keypad1:C3", "esp:21", "orange", [] ],
+    [ "keypad1:C4", "esp:35", "orange", [] ]
   ],
   "dependencies": {}
 }
