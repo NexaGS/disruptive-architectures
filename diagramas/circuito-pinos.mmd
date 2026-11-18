@@ -2,10 +2,8 @@ flowchart LR
     subgraph Totem["Totem - ESP32-S3-DevKitC-1"]
         esp["ESP32-S3"]
     end
-    azul["Botao Azul (Normal)<br/>GPIO4"] --> esp
-    amarelo["Botao Amarelo (Preferencial)<br/>GPIO5"] --> esp
-    vermelho["Botao Vermelho (Urgencia)<br/>GPIO6"] --> esp
-    esp -->|"I2C SDA=GPIO8 / SCL=GPIO9"| oled["Display OLED SSD1306"]
+    teclado["Teclado matricial 4x4<br/>Linhas: GPIO4, 5, 6, 16<br/>Colunas: GPIO17, 18, 21, 35"] --> esp
+    esp -->|"I2C - SDA=GPIO8 / SCL=GPIO9"| oled["Display OLED SSD1306"]
     esp -->|"GPIO15 + resistor 220 ohm"| led["LED de status"]
     esp -->|"GPIO7"| buzzer["Buzzer"]
-    esp -.->|"WiFi / HTTPS"| api["API Java"]
+    esp -.->|"WiFi / HTTPS (tunel)"| api["API Java - Spring Boot"]

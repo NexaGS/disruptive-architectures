@@ -3,10 +3,16 @@ sequenceDiagram
     participant Totem as Totem (ESP32-S3)
     participant Java as API Java
 
-    Cidadao->>Totem: Aperta o botao (normal / preferencial / urgencia)
-    Totem->>Totem: Gera a senha local (N1, P1, U1...)
-    Totem->>Cidadao: Mostra a senha no display e bipa
-    Totem->>Java: POST /atendimentos {deviceId, tipoAtendimento}
-    Note over Java: Java nao gera a senha fisica.<br/>So incrementa a contagem da fila<br/>da unidade/tipo e recalcula a estimativa.
-    Java-->>Totem: 200 OK
-    Note over Totem,Java: A senha do totem e a contagem do Java<br/>sao independentes - nao precisam bater.
+    Cidadao->>Totem: Digita o CPF no teclado e confirma
+    Totem->>Totem: Valida o formato do CPF (11 digitos)
+    Totem->>Cidadao: Mostra o menu de servicos (1 a 5)
+    Cidadao->>Totem: Escolhe o servico (ex.: Clinico Geral)
+    Totem->>Java: POST /api/atendimentos/checkIn {idUnidade, cpf, servico}
+    Note over Java: Java confere se o paciente existe,<br/>cria o atendimento na fila e gera a senha.
+    alt Paciente encontrado
+        Java-->>Totem: 201 Created {senha, status, posicaoFila}
+        Totem->>Cidadao: Mostra a senha no display e bipa
+    else Paciente nao encontrado ou falha de rede
+        Java-->>Totem: 404 ou erro de conexao
+        Totem->>Cidadao: Mostra mensagem de erro e orienta a recepcao
+    end

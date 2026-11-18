@@ -1,0 +1,18 @@
+flowchart TD
+    A([Tela inicial do totem]) --> B[Cidadao digita o CPF]
+    B --> C{CPF tem 11 digitos<br/>e nao sao todos iguais?}
+    C -- Nao --> D[Mostra: CPF invalido]
+    D --> B
+    C -- Sim --> E[Cidadao escolhe o tipo de atendimento]
+    E --> F[Totem envia POST /api/atendimentos/checkIn]
+    F --> G{O servidor respondeu<br/>dentro do tempo limite?}
+    G -- Nao respondeu / falha de rede --> H[Mostra: Falha na conexao]
+    G -- Respondeu --> I{Codigo de resposta HTTP}
+    I -- 201 Created --> J[Mostra a senha e a posicao na fila, com bipe]
+    I -- 404 Not Found --> K[Mostra: CPF nao encontrado]
+    I -- Outro erro do servidor --> L[Mostra: Erro no servidor]
+    H --> M[Aguarda alguns segundos]
+    J --> M
+    K --> M
+    L --> M
+    M --> A
