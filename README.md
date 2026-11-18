@@ -62,15 +62,15 @@ O mesmo circuito e firmware estão espelhados neste repositório, para quem não
 
 ## Componentes
 
-| Componente | Função | Origem |
-|---|---|---|
-| ESP32-S3-DevKitC-1 | Processamento e Wi-Fi | Já em posse da equipe |
-| Teclado matricial 4x4 | Entrada do CPF e escolha do tipo de atendimento | Protótipo físico: teclado de membrana padrão, já em posse da equipe |
-| Display OLED SSD1306, 0.96", I2C 128x64 | Mostra o CPF digitado, o menu de atendimento, a senha e as mensagens de erro | A comprar para o protótipo físico |
-| Buzzer | Confirmação sonora a cada tecla e ao emitir a senha | Já em posse da equipe |
-| LED | Indicador de totem ligado/pronto | Já em posse da equipe |
-| Resistor 220Ω | Limita a corrente do LED | A ter no kit |
-| Bateria LiPo + módulo de carga (TP4056) | Opcional — totem funciona mesmo sem energia da concessionária | Protótipo físico, não simulável no Wokwi |
+| Componente | Função |
+|---|---|
+| ESP32-S3-DevKitC-1 | Microcontrolador com Wi-Fi integrado: executa o firmware, lê o teclado, controla o display e envia o check-in à API |
+| Teclado matricial 4x4 | Captura o CPF digitado pelo cidadão e a escolha do tipo de atendimento |
+| Display OLED SSD1306, 0.96", I2C 128x64 | Exibe o CPF em digitação, o menu de atendimento, a senha emitida e as mensagens de erro |
+| Buzzer | Emite confirmação sonora a cada tecla pressionada e ao emitir a senha |
+| LED | Indica que o totem está ligado e pronto para uso |
+| Resistor 220Ω | Limita a corrente que passa pelo LED, protegendo o pino do ESP32 e o próprio LED |
+| Bateria LiPo + módulo de carga (TP4056) | Opcional: mantém o totem em funcionamento sem energia da rede elétrica; não é simulável no Wokwi |
 
 A simulação digital não depende de nenhuma compra: todos os componentes acima existem como partes no Wokwi. O protótipo físico é um incremento sobre a mesma lógica, não um projeto separado.
 
@@ -172,3 +172,13 @@ Dos quatro desvios descritos em "Fluxo de erros", dois já foram exercitados com
 | Renan da Silva Paulino | RM566610 | 2TDSPS |
 | Sergio Henrique da Silva Santos | RM567254 | 2TDSPS |
 
+## Conferência pela rubrica
+
+| Critério de entrega | Pontos | Onde revisar |
+|---|---:|---|
+| Identificação do problema e proposta CitizenTech | 10 | Seção "O problema e a proposta" |
+| Desenvolvimento do protótipo | 25 | Seção "Protótipo" e [`nexa/nexa.ino`](nexa/nexa.ino) |
+| Identificação dos componentes e do fluxo de comunicação em rede | 20 | Seções "Componentes", "Mapa de pinos" e "Arquitetura e fluxo de comunicação em rede" |
+| Diagrama da arquitetura | 15 | Diagramas de sequência e de fluxo de erros acima |
+| Testes, evidências e demonstração do protótipo | 20 | Seção "Evidências" |
+| Documentação técnica e justificativa das escolhas | 10 | Seções "Mapa de pinos", "Estado atual do firmware" e "Limitações"; versão completa em [`documentacao-tecnica.pdf`](documentacao-tecnica.pdf) |
