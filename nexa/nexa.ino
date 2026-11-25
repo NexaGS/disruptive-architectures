@@ -44,12 +44,12 @@ unsigned long ultimaTentativaReconexao = 0;
 const unsigned long INTERVALO_RECONEXAO = 10000;
 bool wifiLogado = false;
 
-// Servicos disponiveis - posicao no array define a tecla (1 a 5)
+// Servicos disponiveis - a posicao no array define a tecla (1 a 5)
 const char* SERVICOS[] = { "CLINICO_GERAL", "TRIAGEM", "VACINACAO", "PEDIATRIA", "ODONTOLOGIA" };
 const char* SERVICOS_LABEL[] = { "Clinico Geral", "Triagem", "Vacinacao", "Pediatria", "Odontologia" };
 const int QTD_SERVICOS = 5;
 
-// Wi-Fi
+//  Wi-Fi 
 void conectarWiFi() {
   Serial.println("Conectando ao WiFi...");
   WiFi.mode(WIFI_STA);
@@ -308,21 +308,6 @@ void loop() {
           enviarCheckIn(indice);
         }
       }
-      break;
-
-    case MOSTRANDO_SENHA:
-    case MOSTRANDO_ERRO:
-      if (millis() - marcaTempoTela > TEMPO_EXIBICAO) {
-        estadoAtual = OCIOSO;
-        mostrarOcioso();
-      }
-      break;
-
-    case ENVIANDO:
-      // tratado de forma sincrona dentro de enviarCheckIn()
-      break;
-  }
-}      }
       break;
 
     case MOSTRANDO_SENHA:

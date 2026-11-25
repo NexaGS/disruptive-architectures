@@ -55,7 +55,7 @@ O mesmo circuito e firmware estão espelhados neste repositório, para quem não
 
 - [`nexa/nexa.ino`](nexa/nexa.ino) — código-fonte
 - [`nexa/libraries.txt`](nexa/libraries.txt) — dependências (Adafruit GFX Library, Adafruit SSD1306, ArduinoJson, Keypad)
-- [`nexa/secrets.h.example`](nexa/secrets.h.example) — modelo de configuração (Wi-Fi, endpoint do servidor e ID da unidade); copie para `secrets.h` e preencha antes de compilar — esse arquivo está no `.gitignore` para não versionar credenciais daqui em diante (os valores hoje em `nexa/secrets.h` são só placeholders, sem segredo real)
+- [`nexa/secrets.h.example`](nexa/secrets.h.example) — modelo de configuração (Wi-Fi, endpoint do servidor e ID da unidade); copie para `secrets.h` e preencha antes de compilar — o `secrets.h` real não é versionado (está no `.gitignore`), para que credenciais e endereços locais não subam para o repositório
 - [`circuito/diagram.json`](circuito/diagram.json) — circuito, importável direto num novo projeto Wokwi
 
 > A pasta se chama `nexa/` (e não `firmware/`) porque o Arduino IDE exige que a pasta do sketch tenha o mesmo nome do arquivo `.ino` principal — é só essa regra, não afeta como o projeto é editado no VS Code ou simulado no Wokwi.

@@ -1,7 +1,9 @@
 # Credenciais e endpoints locais - nunca versionar
+# O modelo público é nexa/secrets.h.example; copie para secrets.h e preencha localmente.
 nexa/secrets.h
+**/secrets.h
 
-# Ruído de SO e editores
+# Sistema operacional e editores
 .DS_Store
 Thumbs.db
 *.swp
